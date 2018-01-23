@@ -54,6 +54,7 @@ public class ListarBrejas extends AppCompatActivity implements ClickRecyclerView
         setaRecyclerView("");
 
     }
+
     public void setaRecyclerView(String filtro){
 
         //instanciado o Recyclerview
