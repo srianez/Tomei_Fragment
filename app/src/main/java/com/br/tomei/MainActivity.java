@@ -106,17 +106,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-/*    public void abrirNovoUsuario(MenuItem item)
-    {
-        intent = new Intent(MainActivity.this, CadUsuario.class);
-        startActivity(intent);
-    }
-
-    public void abrirSobre(MenuItem item)
-    {
-        intent = new Intent(MainActivity.this, SobreActivity.class);
-        startActivity(intent);
-    }*/
 
     public void fecharApp() {
         new AlertDialog.Builder(this)
@@ -133,14 +122,7 @@ public class MainActivity extends AppCompatActivity
                 .setNegativeButton("não", null)
                 .show();
     }
-    
-    public Retrofit getRetrofit()
-    {
-        return new Retrofit.Builder()
-                .baseUrl("https://silasloja.herokuapp.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-    }
+
 
 /*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {

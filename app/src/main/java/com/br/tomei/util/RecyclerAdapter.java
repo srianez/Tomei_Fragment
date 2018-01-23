@@ -20,6 +20,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     Context mctx;
     private List<Breja> mList;
  
+    public RecyclerAdapter(Context ctx, List<Breja> list){
+        this.mctx = ctx;
+        this.mList = list;
+        this.clickRecyclerViewInterface = clickRecyclerViewInterface;
+    }
+
     public RecyclerAdapter(Context ctx, List<Breja> list, ClickRecyclerView_Interface clickRecyclerViewInterface) {
         this.mctx = ctx;
         this.mList = list;
