@@ -32,7 +32,7 @@ import com.br.tomei.util.ClickRecyclerView_Interface;
 import com.br.tomei.util.RecyclerAdapter;
 import com.br.tomei.util.SessionRepository;
 
-public class ListarBrejas extends AppCompatActivity implements ClickRecyclerView_Interface {
+public class ListarBrejas extends AppCompatActivity  {
 
     private Intent intent;
 
@@ -65,7 +65,7 @@ public class ListarBrejas extends AppCompatActivity implements ClickRecyclerView
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.setLayoutManager(mLayoutManager);
 
-            adapter = new RecyclerAdapter(this, brejasListas, this);
+           // adapter = new RecyclerAdapter(this, brejasListas, this);
             mRecyclerView.setAdapter(adapter);
         } else {
             retornaBrejasSincronizado();
@@ -73,7 +73,7 @@ public class ListarBrejas extends AppCompatActivity implements ClickRecyclerView
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.setLayoutManager(mLayoutManager);
 
-            adapter = new RecyclerAdapter(this, brejasListas, this);
+           // adapter = new RecyclerAdapter(this, brejasListas, this);
             mRecyclerView.setAdapter(adapter);
         }
     }
@@ -100,28 +100,11 @@ public class ListarBrejas extends AppCompatActivity implements ClickRecyclerView
     }
 
 
-    //abre o activity para edição do cadastro
-    @Override
-    public void onCustomClick(Object object)
-    {
-        Breja i = (Breja) object;
 
-        if(i==null)
-        {
-            Snackbar.make(getWindow().getDecorView().getRootView(), "Breja não encontrada", Snackbar.LENGTH_LONG).show();
-        }
-        else
-        {
-            Intent intent = new Intent(ListarBrejas.this, ManterBreja.class);
-
-            intent.putExtra("Breja", i);
-            startActivity(intent);
-        }
-    }
 
 
     //remove o item da lista
-    @Override
+
     public void onCloseButton(Object object)
     {
         final Breja u = (Breja) object;

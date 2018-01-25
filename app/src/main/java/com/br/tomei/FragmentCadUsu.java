@@ -27,6 +27,7 @@ public class FragmentCadUsu extends Fragment{
     private EditText etUsuario;
     private EditText etSenha;
     private EditText etSenha2;
+    private FloatingActionButton btSave;
 
     private ProgressDialog progressDialog;
 
@@ -39,12 +40,9 @@ public class FragmentCadUsu extends Fragment{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
     }
 
-    private FloatingActionButton btSave;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -144,13 +142,6 @@ public class FragmentCadUsu extends Fragment{
         void onFragmentInteraction(Uri uri);
     }
 
-    public Retrofit getRetrofit()
-    {
-        return new Retrofit.Builder()
-                .baseUrl("https://silasloja.herokuapp.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-    }
 
     private void showProgress(String titulo, String mensagem) {
         if(progressDialog == null)

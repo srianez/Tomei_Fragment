@@ -14,17 +14,11 @@ import com.br.tomei.model.Breja;
 import java.util.List;
 
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerTesteViewHolder> {
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
  
-    public static ClickRecyclerView_Interface clickRecyclerViewInterface;
+    public ClickRecyclerView_Interface clickRecyclerViewInterface;
     Context mctx;
     private List<Breja> mList;
- 
-    public RecyclerAdapter(Context ctx, List<Breja> list){
-        this.mctx = ctx;
-        this.mList = list;
-        this.clickRecyclerViewInterface = clickRecyclerViewInterface;
-    }
 
     public RecyclerAdapter(Context ctx, List<Breja> list, ClickRecyclerView_Interface clickRecyclerViewInterface) {
         this.mctx = ctx;
@@ -33,14 +27,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     }
 
     @Override
-    public RecyclerTesteViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public RecyclerViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.itemlist_itemdalista, viewGroup, false);
-        return new RecyclerTesteViewHolder(itemView);
+        return new RecyclerViewHolder(itemView);
     }
  
     @Override
-    public void onBindViewHolder(RecyclerTesteViewHolder viewHolder, int i) {
-        Breja item = mList.get(i);
+    public void onBindViewHolder(RecyclerViewHolder viewHolder, int i) {
+        final Breja item = mList.get(i);
 
         viewHolder.setIsRecyclable(false);
 
@@ -48,10 +42,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         viewHolder.viewNome.setText(viewHolder.viewNome.getText().toString()+": "+item.getNome());
         viewHolder.viewTipo.setText(viewHolder.viewTipo.getText().toString()+": "+item.getTipo());
         viewHolder.viewDescricao.setText(viewHolder.viewDescricao.getText().toString()+": "+item.getDescricao());
- 
+
+        viewHolder.btnRemoverBreja.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickRecyclerViewInterface.onClick(item);
+            }
+        });
+
+/*        viewHolder.btnEditarBreja.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickRecyclerViewInterface.onClick(item);
+            }
+        });*/
     }
 
-    @Override
+/*    @Override
     public long getItemId(int position) {
         return position;
     }
@@ -59,7 +66,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     @Override
     public int getItemViewType(int position) {
         return position;
-    }
+    }*/
 
     @Override
     public int getItemCount() {
@@ -67,12 +74,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     }
  
  
-    protected class RecyclerTesteViewHolder extends RecyclerView.ViewHolder {
+    protected class RecyclerViewHolder extends RecyclerView.ViewHolder {
  
         protected TextView viewNome, viewTipo, viewDescricao, viewID;
         protected FloatingActionButton btnRemoverBreja;
+        protected FloatingActionButton btnEditarBreja;
  
-        public RecyclerTesteViewHolder(final View itemView) {
+        public RecyclerViewHolder(final View itemView) {
             super(itemView);
 
             viewID = (TextView) itemView.findViewById(R.id.textview_id);
@@ -80,25 +88,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             viewTipo = (TextView) itemView.findViewById(R.id.textview_tipo);
             viewDescricao = (TextView) itemView.findViewById(R.id.textview_descricao);
             btnRemoverBreja = (FloatingActionButton) itemView.findViewById(R.id.btnRemoverBreja);
+           // btnEditarBreja = (FloatingActionButton) itemView.findViewById(R.id.btnEditarBreja);
 
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    clickRecyclerViewInterface.onCustomClick(mList.get(getLayoutPosition()));
-                }
-            });
-
-
-            btnRemoverBreja.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    clickRecyclerViewInterface.onCloseButton(mList.get(getLayoutPosition()));
-                }
-            });
         }
     }
 }

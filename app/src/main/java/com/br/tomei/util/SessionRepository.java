@@ -4,7 +4,7 @@ import com.br.tomei.model.Breja;
 
 public class SessionRepository
 {
-    static Breja i;
+/*    static Breja i;
 
     public SessionRepository(){}
 
@@ -18,5 +18,5 @@ public class SessionRepository
         return this.i;
     }
 
-    public void setItem(Breja i) {this.i = i;}
+    public void setItem(Breja i) {this.i = i;}*/
 }

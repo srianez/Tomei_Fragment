@@ -40,7 +40,7 @@ public interface BrejaAPI {
 
     //delete item
     @DELETE("/breja/id/{id}")
-    Call<Void> deleteById(@Body String id);
+    Call<Void> deleteById(@Path(value="id") String id);
 
     //USUARIO
 

@@ -40,14 +40,6 @@
                     android:orientation="vertical"
                     android:paddingLeft="10dp">
 
-<!--                    <TextView
-                        android:id="@+id/textview_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:paddingBottom="6dp"
-                        android:text="ID"
-                        android:textSize="14dp" />-->
                     <TextView
                         android:id="@+id/textview_id"
                         android:layout_width="wrap_content"
@@ -84,16 +76,28 @@
                 </LinearLayout>
 
                 <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/btnEditarBreja"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:baselineAlignBottom="false"
+                    android:clickable="true"
+                    android:keyboardNavigationCluster="false"
+                    app:backgroundTint="@color/colorRemoveButton"
+                    app:fabSize="mini"
+                    app:srcCompat="@android:drawable/ic_menu_edit" />
+
+                <android.support.design.widget.FloatingActionButton
                     android:id="@+id/btnRemoverBreja"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:baselineAlignBottom="false"
-                    android:clickable="false"
-                    android:contextClickable="false"
+                    android:clickable="true"
                     android:keyboardNavigationCluster="false"
-                    app:backgroundTint="@color/colorPrimaryDark"
+                    app:backgroundTint="@color/colorRemoveButton"
                     app:fabSize="mini"
                     app:srcCompat="@android:drawable/ic_delete" />
 

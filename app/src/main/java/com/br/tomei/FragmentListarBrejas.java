@@ -7,32 +7,51 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.NetworkOnMainThreadException;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.br.tomei.api.BrejaAPI;
 import com.br.tomei.model.Breja;
+import com.br.tomei.model.Usuario;
+import com.br.tomei.util.ClickRecyclerView_Interface;
 import com.br.tomei.util.RecyclerAdapter;
 import com.br.tomei.util.RetroFit;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class FragmentListarBrejas extends Fragment{
+
+public class FragmentListarBrejas extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     RecyclerAdapter adapter;
     private List<Breja> brejasListas = new ArrayList<>();
     private OnFragmentInteractionListener mListener;
+
+    View v;
     private EditText etFiltroListaBreja;
+    String value;
 
     public FragmentListarBrejas() {
 
@@ -41,12 +60,14 @@ public class FragmentListarBrejas extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.content_listar_brejas, container, false);
+        v = inflater.inflate(R.layout.content_listar_brejas, container, false);
         //etFiltroListaBreja = v.findViewById(R.id.etFiltroListaBreja);
 
 /*        if(!etFiltroListaBreja.toString().equals("") && etFiltroListaBreja.toString() !=null) {
@@ -59,123 +80,108 @@ public class FragmentListarBrejas extends Fragment{
 
             adapter = new RecyclerAdapter(getActivity(), brejasListas);
             mRecyclerView.setAdapter(adapter);
-x
+
         } else {*/
 
-            getBrejas();
+        getBrejas();
 
-            mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_recyclerbreja);
-            mLayoutManager = new LinearLayoutManager(getContext());
-            mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_recyclerbreja);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
-            adapter = new RecyclerAdapter(getActivity(), brejasListas);
-            mRecyclerView.setAdapter(adapter);
+        setLista();
         //}
+/*        etFiltroListaBreja = v.findViewById(R.id.etFiltroListaBreja);
+        value = etFiltroListaBreja.getText().toString();
+
+        etFiltroListaBreja.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                getBrejasFiltro(value);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });*/
 
         return v;
     }
 
-    //remove o item da lista
-    public void onCloseButton(Object object)
-    {
-/*        final Breja u = (Breja) object;
+    private void setLista() {
+        adapter = new RecyclerAdapter(getActivity(), brejasListas, new ClickRecyclerView_Interface() {
+            @Override
+            public void onClick(Object object) {
+                //Toast.makeText(getContext(), ((Breja) object).getNome(), Toast.LENGTH_SHORT).show();
 
-        AlertDialog.Builder builder;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-        {
-            builder = new AlertDialog.Builder(getWindow().getDecorView().getRootView().getContext(), android.R.style.Theme_Material_Dialog_Alert);
-        } else {
-            builder = new AlertDialog.Builder(getWindow().getDecorView().getRootView().getContext());
-        }
-        builder.setTitle("Remover breja")
-                .setMessage("Deseja remover essa breja?")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        apagaBreja(u.getId());
+                RetroFit retroFit = new RetroFit();
+                BrejaAPI api = retroFit.getRetrofit().create(BrejaAPI.class);
+
+                api.deleteById(((Breja) object).getId()).enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        Toast.makeText(getContext(), "Breja removida com sucesso!", Toast.LENGTH_SHORT).show();
+                        getBrejas();
                     }
-                })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
 
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Toast.makeText(getContext(), "Deu Erro", Toast.LENGTH_SHORT).show();
                     }
-                })
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();*/
-    }
-
-
-    public void onCustomClick(Object object)
-    {
-/*        Breja i = (Breja) object;
-
-        if(i==null)
-        {
-            Snackbar.make(getWindow().getDecorView().getRootView(), "Breja não encontrada", Snackbar.LENGTH_LONG).show();
-        }
-        else
-        {
-            Intent intent = new Intent(ListarBrejas.this, ManterBreja.class);
-
-            intent.putExtra("Breja", i);
-            startActivity(intent);
-        }*/
-    }
-
-    private void getBrejas()
-    {
-        Thread t = (new Thread()
-        {
-            public void run()
-            {
-                try
-                {
-                    RetroFit retroFit = new RetroFit();
-                    BrejaAPI api = retroFit.getRetrofit().create(BrejaAPI.class);
-                    brejasListas = api.findAll().execute().body();
-                }
-                catch(NetworkOnMainThreadException | IOException e)
-                {
-                    System.out.println(e.getMessage());
-                }
+                });
             }
         });
 
-        t.start();
-        try {
-            t.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        mRecyclerView.setAdapter(adapter);
     }
 
-    private void getBrejas(final String filtro)
-    {
-        Thread t = (new Thread()
-        {
-            public void run()
-            {
-                try
-                {
-                    RetroFit retroFit = new RetroFit();
-                    BrejaAPI api = retroFit.getRetrofit().create(BrejaAPI.class);
-                    brejasListas = api.buscarItemNomeParc(filtro).execute().body();
-                }
-                catch(NetworkOnMainThreadException | IOException e)
-                {
-                    System.out.println(e.getMessage());
-                }
+
+    private void getBrejas() {
+
+        RetroFit retroFit = new RetroFit();
+        BrejaAPI api = retroFit.getRetrofit().create(BrejaAPI.class);
+        api.findAll().enqueue(new Callback<List<Breja>>() {
+            @Override
+            public void onResponse(Call<List<Breja>> call, Response<List<Breja>> response) {
+                brejasListas = response.body();
+                setLista();
+            }
+
+            @Override
+            public void onFailure(Call<List<Breja>> call, Throwable t) {
+
             }
         });
 
-        t.start();
-        try {
-            t.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
+    private void getBrejasFiltro(final String filtro) {
 
+        RetroFit retroFit = new RetroFit();
+        BrejaAPI api = retroFit.getRetrofit().create(BrejaAPI.class);
+
+        api.buscarItemNomeParc(filtro).enqueue(new Callback<List<Breja>>() {
+            @Override
+            public void onResponse(Call<List<Breja>> call, Response<List<Breja>> response) {
+                brejasListas = response.body();
+                setLista();
+            }
+
+            @Override
+            public void onFailure(Call<List<Breja>> call, Throwable t) {
+
+            }
+        });
+
+
+    }
 
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -195,6 +201,7 @@ x
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
 
     @Override
     public void onDetach() {
