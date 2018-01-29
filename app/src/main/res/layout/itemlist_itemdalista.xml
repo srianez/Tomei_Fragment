@@ -54,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:paddingBottom="6dp"
-                        android:text="Nome"
+                        android:text="@string/hintNomeBreja"
                         android:textSize="14dp" />
 
                     <TextView
@@ -63,7 +63,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:paddingBottom="6dp"
-                        android:text="Tipo"
+                        android:text="@string/hintTipo"
                         android:textSize="14dp" />
 
                     <TextView
@@ -71,7 +71,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
-                        android:text="Descrição"
+                        android:text="@string/hintObs"
                         android:textSize="14dp" />
                 </LinearLayout>
 

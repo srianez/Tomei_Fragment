@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.br.tomei.api.BrejaAPI;
 import com.br.tomei.model.Usuario;
+import com.br.tomei.util.RetroFit;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,18 +44,20 @@ public class CadUsuarioLogin extends AppCompatActivity {
     public void salvarUsuario(View v) {
 
         if(etUsuario.getText().toString().isEmpty()) {
-            Toast.makeText(CadUsuarioLogin.this, "Informe o usuário!", Toast.LENGTH_LONG).show();
+            Toast.makeText(CadUsuarioLogin.this, getString(R.string.errorUserRequired), Toast.LENGTH_LONG).show();
         }
 
         if(etSenha.getText().toString().isEmpty()) {
-            Toast.makeText(CadUsuarioLogin.this, "Informe a senha!", Toast.LENGTH_LONG).show();
+            Toast.makeText(CadUsuarioLogin.this, getString(R.string.errorPassRequired), Toast.LENGTH_LONG).show();
         }
 
         if (etSenha.getText().toString().equals(etSenha2.getText().toString())) {
 
-            showProgress("Usuário", "Salvando usuário...");
+            showProgress(getString(R.string.hintUsuario), getString(R.string.savingUser));
 
-            BrejaAPI api = getRetrofit().create(BrejaAPI.class);
+            RetroFit retroFit = new RetroFit();
+            BrejaAPI api = retroFit.getRetrofit().create(BrejaAPI.class);
+
             Usuario usuario = new Usuario();
 
             usuario.setUsuario(etUsuario.getText().toString());
@@ -64,7 +68,7 @@ public class CadUsuarioLogin extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             dismissProgress();
-                            Toast.makeText(CadUsuarioLogin.this, "Usuário criado com sucesso!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CadUsuarioLogin.this, getString(R.string.userCreated), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(CadUsuarioLogin.this, LoginActivity.class);
                             CadUsuarioLogin.this.finish();
                             startActivity(intent);
@@ -73,26 +77,19 @@ public class CadUsuarioLogin extends AppCompatActivity {
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
                             dismissProgress();
-                            Toast.makeText(CadUsuarioLogin.this, "Ohh shiiit...deu erro! :/", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CadUsuarioLogin.this, getString(R.string.errorUserCreated), Toast.LENGTH_SHORT).show();
 
                         }
 
                     });
         } else {
-            Toast.makeText(CadUsuarioLogin.this, "As senhas devem ser iguais!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CadUsuarioLogin.this, getString(R.string.errorRepeatPass), Toast.LENGTH_SHORT).show();
             etSenha.setText("");
             etSenha2.setText("");
             etSenha.requestFocus();
         }
     }
 
-    public Retrofit getRetrofit()
-    {
-        return new Retrofit.Builder()
-                .baseUrl("https://silasloja.herokuapp.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-    }
 
     private void showProgress(String titulo, String mensagem) {
         if(progressDialog == null)

@@ -68,20 +68,6 @@ public class FragmentListarBrejas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         v = inflater.inflate(R.layout.content_listar_brejas, container, false);
-        //etFiltroListaBreja = v.findViewById(R.id.etFiltroListaBreja);
-
-/*        if(!etFiltroListaBreja.toString().equals("") && etFiltroListaBreja.toString() !=null) {
-
-            getBrejas(etFiltroListaBreja.toString());
-
-            mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_recyclerbreja);
-            mLayoutManager = new LinearLayoutManager(getContext());
-            mRecyclerView.setLayoutManager(mLayoutManager);
-
-            adapter = new RecyclerAdapter(getActivity(), brejasListas);
-            mRecyclerView.setAdapter(adapter);
-
-        } else {*/
 
         getBrejas();
 
@@ -90,10 +76,8 @@ public class FragmentListarBrejas extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         setLista();
-        //}
-/*        etFiltroListaBreja = v.findViewById(R.id.etFiltroListaBreja);
-        value = etFiltroListaBreja.getText().toString();
 
+        etFiltroListaBreja = v.findViewById(R.id.etFiltroListaBreja);
         etFiltroListaBreja.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -102,7 +86,10 @@ public class FragmentListarBrejas extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                getBrejasFiltro(value);
+
+                Toast.makeText(getContext(), "onTextChanged", Toast.LENGTH_SHORT).show();
+
+                getBrejasFiltro("es");
 
             }
 
@@ -110,7 +97,7 @@ public class FragmentListarBrejas extends Fragment {
             public void afterTextChanged(Editable s) {
 
             }
-        });*/
+        });
 
         return v;
     }
@@ -127,13 +114,13 @@ public class FragmentListarBrejas extends Fragment {
                 api.deleteById(((Breja) object).getId()).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        Toast.makeText(getContext(), "Breja removida com sucesso!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getString(R.string.beerRemoved), Toast.LENGTH_SHORT).show();
                         getBrejas();
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(getContext(), "Deu Erro", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getString(R.string.errorRemoveBeer), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -162,7 +149,8 @@ public class FragmentListarBrejas extends Fragment {
 
     }
 
-    private void getBrejasFiltro(final String filtro) {
+
+    private void getBrejasFiltro(String filtro) {
 
         RetroFit retroFit = new RetroFit();
         BrejaAPI api = retroFit.getRetrofit().create(BrejaAPI.class);
@@ -172,19 +160,17 @@ public class FragmentListarBrejas extends Fragment {
             public void onResponse(Call<List<Breja>> call, Response<List<Breja>> response) {
                 brejasListas = response.body();
                 setLista();
-            }
+        }
 
             @Override
             public void onFailure(Call<List<Breja>> call, Throwable t) {
-
+                Toast.makeText(getContext(), getString(R.string.errorLoadingBeer), Toast.LENGTH_SHORT).show();
             }
         });
-
 
     }
 
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -210,7 +196,6 @@ public class FragmentListarBrejas extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //configs
+    <string name="app_name">Tomei</string>
+    <string name="navigation_drawer_open">Navigation drawer open</string>
+    <string name="navigation_drawer_close">Navigation drawer close</string>
+    <string name="filter">Filtro</string>
+
+    <string name="version">1.0.1</string>
+    <string name="email">tomei@tomei.com.br</string>
+    <string name="titleExit">Sair</string>
+
+
+    //Titles
+    <string name="titleAbout">Sobre</string>
+    <string name="titleNewBeer">Nova Breja</string>
+    <string name="titleMyBeer">Minhas Brejas</string>
+    <string name="titleNewUser">Novo Usuário</string>
+    <string name="Beer">Breja</string>
+    <string name="changeBeer">Alterando a breja</string>
+    <string name="altBrejaSucess">Breja alterada com sucesso</string>
+    <string name="savingBeer">Salvando a breja</string>
+    <string name="saveBeerSucess">Breja adicionada com sucesso</string>
+    <string name="errorBeerCreated">Erro ao criar breja!</string>
+
+    //Loggin
+
+
+    //Usuário
+    <string name="hintUsuario">Usuário</string>
+    <string name="hintSenha">Senha</string>
+    <string name="hintConfirmarSenha">Confirmar Senha</string>
+    <string name="hintEntrar">Loggin</string>
+    <string name="hintNovoUser">Novo Usuário</string>
+    <string name="errorFindUser">Usuário não encontrado</string>
+    <string name="errorUserRequired">Informar o usuário</string>
+    <string name="errorPassRequired">Informar a senha</string>
+    <string name="savingUser">Salvando usuário...</string>
+    <string name="userCreated">Usuário criado com sucesso!</string>
+    <string name="errorUserCreated">Erro ao criar usuário!</string>
+    <string name="errorRepeatPass">As senhas devem ser iguais!</string>
+
+
+
+    //Breja
+    <string name="hintNomeBreja">Nome</string>
+    <string name="hintTipo">Tipo da breja</string>
+    <string name="hintObs">Obs</string>
+    <string name="errorNameBeerRequired">Nome é obrigatório</string>
+    <string name="errorAltBeer">Erro ao alterar a breja</string>
+    <string name="beerRemoved">Breja removida!</string>
+    <string name="errorRemoveBeer">Erro ao remover a breja</string>
+    <string name="errorLoadingBeer">Erro ao carregar as brejas</string>
+
+
+    <string-array name="tipo_breja">
+        <item>Ale</item>
+        <item>Brow Ale</item>
+        <item>IPA</item>
+        <item>Black IPA</item>
+        <item>Double IPA</item>
+        <item>Imperial IPA</item>
+        <item>Weiss</item>
+        <item>Wit Bier</item>
+        <item>Red Ale</item>
+        <item>Pilsner</item>
+        <item>Lager</item>
+        <item>Outro</item>
+    </string-array>
+
+</resources>

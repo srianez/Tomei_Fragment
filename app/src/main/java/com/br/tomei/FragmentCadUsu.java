@@ -63,16 +63,16 @@ public class FragmentCadUsu extends Fragment{
             public void onClick(View v) {
 
                 if (etUsuario.getText().toString().isEmpty()) {
-                    Toast.makeText(getContext(), "Informe o usuário!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getString(R.string.errorUserRequired), Toast.LENGTH_LONG).show();
                 }
 
                 if (etSenha.getText().toString().isEmpty()) {
-                    Toast.makeText(getContext(), "Informe a senha!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getString(R.string.errorPassRequired), Toast.LENGTH_LONG).show();
                 }
 
                 if (etSenha.getText().toString().equals(etSenha2.getText().toString())) {
 
-                    showProgress("Usuário", "Salvando usuário...");
+                    showProgress(getString(R.string.hintUsuario), getString(R.string.savingUser));
 
                     RetroFit retroFit = new RetroFit();
                     BrejaAPI api = retroFit.getRetrofit().create(BrejaAPI.class);
@@ -87,21 +87,21 @@ public class FragmentCadUsu extends Fragment{
                                 @Override
                                 public void onResponse(Call<Void> call, Response<Void> response) {
                                     dismissProgress();
-                                    Toast.makeText(getContext(),
-                                            "Usuário criado com sucesso!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(),getString(R.string.userCreated), Toast.LENGTH_SHORT).show();
+
                                 }
 
                                 @Override
                                 public void onFailure(Call<Void> call, Throwable t) {
                                     dismissProgress();
                                     Toast.makeText(getContext(),
-                                            "Ohh shiiit...deu erro! :/", Toast.LENGTH_SHORT).show();
+                                            getString(R.string.errorUserCreated), Toast.LENGTH_SHORT).show();
 
                                 }
 
                             });
                 } else  {
-                    Toast.makeText(getContext(), "As senhas devem ser iguais!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.errorRepeatPass), Toast.LENGTH_SHORT).show();
                     etSenha.setText("");
                     etSenha2.setText("");
                     etSenha.requestFocus();

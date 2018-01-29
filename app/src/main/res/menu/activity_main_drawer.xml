@@ -7,23 +7,23 @@
         <item
             android:id="@+id/nav_nova_breja"
             android:icon="@drawable/beermenu512"
-            android:title="Nova Breja" />
+            android:title="@string/titleNewBeer" />
         <item
             android:id="@+id/nav_minhas_brejas"
             android:icon="@drawable/listabrejamenu512"
-            android:title="Minhas Brejas" />
+            android:title="@string/titleMyBeer" />
         <item
             android:id="@+id/nav_novo_usuario"
             android:icon="@drawable/usermenu512"
-            android:title="Novo Usuário"/>
+            android:title="@string/titleNewUser"/>
        <item
            android:id="@+id/nav_sobre"
            android:icon="@drawable/sobremenu512"
-           android:title="Sobre"/>
+           android:title="@string/titleAbout"/>
        <item
            android:id="@+id/nav_sair"
            android:icon="@drawable/sairmenu512"
-           android:title="Sair"/>
+           android:title="@string/titleExit"/>
     </group>
 
 

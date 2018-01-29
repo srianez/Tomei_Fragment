@@ -38,7 +38,7 @@
             android:textColor="#000000"
             android:textStyle="bold"
             android:textSize="15dp"
-            android:text="Nome" />
+            android:text="@string/hintNomeBreja" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -61,21 +61,11 @@
             android:textColor="#000000"
             android:textStyle="bold"
             android:textSize="15dp"
-            android:text="Tipo"/>
+            android:text="@string/hintTipo"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-<!--            <AutoCompleteTextView
-                android:id="@+id/txtTipo"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:hint="Tipo da breja"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="0dp"
-                android:enabled="false"/>-->
 
             <Spinner
                 android:id="@+id/txtTipo"
@@ -95,7 +85,7 @@
             android:textColor="#000000"
             android:textStyle="bold"
             android:textSize="15dp"
-            android:text="Descrição"/>
+            android:text="@string/hintObs"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

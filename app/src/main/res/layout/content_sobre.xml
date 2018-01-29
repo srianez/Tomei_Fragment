@@ -23,13 +23,13 @@ android:gravity="center">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Versão 1.0"
+        android:text="@string/version"
         android:textSize="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tomei@tomei.com.br"
+        android:text="@string/email"
         android:textSize="20dp"/>
 
 </LinearLayout>

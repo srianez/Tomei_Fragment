@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.br.tomei.api.BrejaAPI;
 import com.br.tomei.model.Breja;
+import com.br.tomei.util.RetroFit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,7 +50,6 @@ public class ManterBreja extends AppCompatActivity {
 
         txtId = (AutoCompleteTextView) findViewById(R.id.txtId);
         txtNome = (AutoCompleteTextView) findViewById(R.id.txtNome);
-        //txtTipo = (AutoCompleteTextView) findViewById(R.id.txtTipo);
         txtTipo = (Spinner) findViewById(R.id.txtTipo);
         txtDescricao = (AutoCompleteTextView) findViewById(R.id.txtDescricao);
         txtRatingBar = (RatingBar) findViewById(R.id.ratingBar);
@@ -95,12 +95,6 @@ public class ManterBreja extends AppCompatActivity {
         btSalvarDados.setVisibility(View.GONE);
     }
 
-    private Retrofit getRetrofit() {
-        return new Retrofit.Builder()
-                .baseUrl("https://silasloja.herokuapp.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-    }
 
     private void escondeTeclado(View v) {
         if (v != null) {
@@ -111,7 +105,7 @@ public class ManterBreja extends AppCompatActivity {
 
     private boolean verificaCampos() {
         if (txtNome.getText().toString().length() == 0) {
-            txtNome.setError("Informar o nome da breja!");
+            txtNome.setError(getString(R.string.errorNameBeerRequired));
             return false;
         } else {
             return true;
@@ -130,11 +124,13 @@ public class ManterBreja extends AppCompatActivity {
 
     public void salvarDadosBreja(final View v)
     {
-        showProgress("Breja", "Alterando a breja...");
+        showProgress(getString(R.string.Beer),  getString(R.string.changeBeer));
 
         if(verificaCampos())
         {
-                BrejaAPI api = getRetrofit().create(BrejaAPI.class);
+            RetroFit retroFit = new RetroFit();
+            BrejaAPI api = retroFit.getRetrofit().create(BrejaAPI.class);
+
                  Breja u = new Breja(txtId.getText().toString(),
                                      txtNome.getText().toString(),
                                      txtTipo.getSelectedItem().toString(),
@@ -144,7 +140,7 @@ public class ManterBreja extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response)
                     {
-                        Toast.makeText(ManterBreja.this, getString(R.string.msgAltBrejaSucess), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ManterBreja.this, getString(R.string.altBrejaSucess), Toast.LENGTH_SHORT).show();
                         bloqueaCampos();
                         escondeTeclado(v);
                         dismissProgress();
@@ -155,7 +151,7 @@ public class ManterBreja extends AppCompatActivity {
                     public void onFailure(Call<Void> call, Throwable t)
                     {
                         System.out.println(t);
-                        Toast.makeText(ManterBreja.this, getString(R.string.msgAltBrejaFail), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ManterBreja.this, getString(R.string.errorAltBeer), Toast.LENGTH_SHORT).show();
                         escondeTeclado(v);
                         dismissProgress();
                     }

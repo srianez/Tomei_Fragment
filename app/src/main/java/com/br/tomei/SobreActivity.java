@@ -57,10 +57,5 @@ public class SobreActivity extends AppCompatActivity implements NavigationView.O
         return true;
     }
 
-/*    public void abrirSobre(MenuItem item)
-    {
-        Intent intent = new Intent(SobreActivity.this, SobreActivity.class);
-        startActivity(intent);
-    }*/
 
 }

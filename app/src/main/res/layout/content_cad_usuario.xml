@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Usuário"
+            android:text="@string/hintUsuario"
             android:textStyle="bold"
             android:textColor="#000000" />
 
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Senha"
+            android:text="@string/hintSenha"
             android:textStyle="bold"
             android:textColor="#000000" />
 
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Confirmar senha"
+            android:text="@string/hintConfirmarSenha"
             android:textStyle="bold"
             android:textColor="#000000" />
 

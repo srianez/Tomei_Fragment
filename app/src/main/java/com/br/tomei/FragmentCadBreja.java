@@ -64,10 +64,10 @@ public class FragmentCadBreja extends Fragment{
             public void onClick(View v) {
 
                 if(txtNome.getText().toString().isEmpty()) {
-                    Toast.makeText(getContext(), "Informe ao menos o nome da breja né fera?!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getString(R.string.errorNameBeerRequired), Toast.LENGTH_LONG).show();
                 }
 
-                showProgress("Breja", "Salvando a breja...");
+                showProgress( getString(R.string.Beer), getString(R.string.savingBeer));
 
                 RetroFit retroFit = new RetroFit();
                 BrejaAPI api = retroFit.getRetrofit().create(BrejaAPI.class);
@@ -85,14 +85,14 @@ public class FragmentCadBreja extends Fragment{
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 dismissProgress();
                                 Toast.makeText(getContext(),
-                                        "Breja cadastrada com sucesso! :)", Toast.LENGTH_SHORT).show();
+                                        getString(R.string.saveBeerSucess), Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
                                 dismissProgress();
                                 Toast.makeText(getContext(),
-                                        "Ohhh shittt. Erro ao cadastrar breja :(", Toast.LENGTH_SHORT).show();
+                                        getString(R.string.errorBeerCreated), Toast.LENGTH_SHORT).show();
 
                             }
                         });

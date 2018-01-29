@@ -50,12 +50,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             }
         });
 
-/*        viewHolder.btnEditarBreja.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickRecyclerViewInterface.onClick(item);
-            }
-        });*/
     }
 
 /*    @Override
@@ -88,7 +82,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             viewTipo = (TextView) itemView.findViewById(R.id.textview_tipo);
             viewDescricao = (TextView) itemView.findViewById(R.id.textview_descricao);
             btnRemoverBreja = (FloatingActionButton) itemView.findViewById(R.id.btnRemoverBreja);
-           // btnEditarBreja = (FloatingActionButton) itemView.findViewById(R.id.btnEditarBreja);
+            //btnEditarBreja = (FloatingActionButton) itemView.findViewById(R.id.btnEditarBreja);
 
         }
     }

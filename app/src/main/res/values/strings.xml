@@ -1,47 +1,56 @@
 <resources>
+    //configs
     <string name="app_name">Tomei</string>
+    <string name="navigation_drawer_open">Navigation drawer open</string>
+    <string name="navigation_drawer_close">Navigation drawer close</string>
+    <string name="filter">Filter</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="version">1.0.1</string>
+    <string name="email">tomei@tomei.com.br</string>
+    <string name="titleExit">Exit</string>
 
-    <string name="action_settings">Settings</string>
 
-    //menu
-    <string name="menu_cadUsuario">Novo usuário</string>
+    //Titles
+    <string name="titleAbout">About</string>
+    <string name="titleNewBeer">New Beer</string>
+    <string name="titleMyBeer">My Beers</string>
+    <string name="titleNewUser">New User</string>
+    <string name="Beer">Beer</string>
+    <string name="changeBeer">Changing beer</string>
+    <string name="altBrejaSucess">Beer changed successfully</string>
+    <string name="savingBeer">Saving the beer</string>
+    <string name="saveBeerSucess">Beer added successfully</string>
+    <string name="errorBeerCreated">Error creating beer!</string>
 
-    <string name="Home">Home</string>
-    <string name="NovaBreja">Nova breja</string>
-    <string name="test">Tomei</string>
-    <string name="test_email">tomei@tomei.com.br</string>
+    //Loggin
 
-    <string name="NovoUser">Novo Usuário</string>
-    <string name="MinhasBrejas">Minhas Brejas</string>
-    <string name="Sobre">Sobre</string>
-    <string name="Sair">Sair</string>
 
     //Usuário
     <string name="hintUsuario">User</string>
     <string name="hintSenha">Password</string>
+    <string name="hintConfirmarSenha">Confirm password</string>
     <string name="hintEntrar">Loggin</string>
     <string name="hintNovoUser">New User</string>
+    <string name="errorFindUser">User not found</string>
+    <string name="errorUserRequired">User is required</string>
+    <string name="errorPassRequired">Password is required</string>
+    <string name="savingUser">Saving user...</string>
+    <string name="userCreated">User created successfully!</string>
+    <string name="errorUserCreated">Error creating user!</string>
+    <string name="errorRepeatPass">Passwords must be the same!</string>
 
-    <string name="hintNomeBreja">Nome</string>
-    <string name="hintTipo">Tipo</string>
-    <string name="hintFabricante">Fabricante</string>
 
-    <string name="filtroListaBreja">Filtro</string>
 
-    <string name="erroEncontrarBreja">Erro ao buscar breja!</string>
-    <string name="erroEncontrarUser">Usuário não encontrado!</string>
+    //Breja
+    <string name="hintNomeBreja">Name</string>
+    <string name="hintTipo">Beer type</string>
+    <string name="hintObs">Note</string>
+    <string name="errorNameBeerRequired">Name is required</string>
+    <string name="errorAltBeer">Error changing beer</string>
+    <string name="beerRemoved">Beer removed!</string>
+    <string name="errorRemoveBeer">Error removing beer</string>
+    <string name="errorLoadingBeer">Error loading beer</string>
 
-    <string name="deletarBreja">Deletar Breja</string>
-    <string name="msgDeletarBreja">Deseja remover essa breja?</string>
-    <string name="msgDeletarBrejaOk">Breja removida com sucesso</string>
-
-    <string name="erroConexao">Erro de conexão! Está com internet?</string>
-
-    <string name="msgAltBrejaSucess">Breja alterada com sucesso! :)</string>
-    <string name="msgAltBrejaFail">Ohhh shit... deu erro! :(</string>
 
     <string-array name="tipo_breja">
         <item>Ale</item>

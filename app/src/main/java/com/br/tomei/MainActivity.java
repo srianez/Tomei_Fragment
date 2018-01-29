@@ -1,9 +1,8 @@
 package com.br.tomei;
 
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,15 +10,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FragmentCadUsu.OnFragmentInteractionListener, FragmentSobre.OnFragmentInteractionListener, FragmentCadBreja.OnFragmentInteractionListener, FragmentListarBrejas.OnFragmentInteractionListener {
@@ -78,16 +71,16 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_sobre) {
             fragmentClass = FragmentSobre.class;
-            getSupportActionBar().setTitle("Sobre");
+            getSupportActionBar().setTitle(getString(R.string.titleAbout));
         } else if (id == R.id.nav_nova_breja){
             fragmentClass = FragmentCadBreja.class;
-            getSupportActionBar().setTitle("Nova Breja");
+            getSupportActionBar().setTitle(getString(R.string.titleNewBeer));
         } else if (id == R.id.nav_minhas_brejas){
             fragmentClass = FragmentListarBrejas.class;
-            getSupportActionBar().setTitle("Minhas Brejas");
+            getSupportActionBar().setTitle(getString(R.string.titleMyBeer));
         } else if (id == R.id.nav_novo_usuario) {
             fragmentClass = FragmentCadUsu.class;
-            getSupportActionBar().setTitle("Novo Usuário");
+            getSupportActionBar().setTitle(getString(R.string.titleNewUser));
         } else if (id == R.id.nav_sair){
             finish();
             System.exit(0);
@@ -105,31 +98,6 @@ public class MainActivity extends AppCompatActivity
         return true;
 
     }
-
-
-    public void fecharApp() {
-        new AlertDialog.Builder(this)
-                .setTitle("Sair do App")
-                .setMessage("Tem certeza que deseja sair do App?")
-                .setPositiveButton("sim",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                finish();
-                                System.exit(0);
-                            }
-                        })
-                .setNegativeButton("não", null)
-                .show();
-    }
-
-
-/*    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }*/
 
     @Override
     public void onFragmentInteraction(Uri uri) {
