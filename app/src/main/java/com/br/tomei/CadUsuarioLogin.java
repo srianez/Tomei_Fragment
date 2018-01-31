@@ -3,23 +3,17 @@ package com.br.tomei;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-
 import com.br.tomei.api.BrejaAPI;
 import com.br.tomei.model.Usuario;
 import com.br.tomei.util.RetroFit;
-
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class CadUsuarioLogin extends AppCompatActivity {
 

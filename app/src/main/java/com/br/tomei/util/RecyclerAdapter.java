@@ -52,15 +52,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     }
 
-/*    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return position;
-    }*/
 
     @Override
     public int getItemCount() {
@@ -82,7 +73,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             viewTipo = (TextView) itemView.findViewById(R.id.textview_tipo);
             viewDescricao = (TextView) itemView.findViewById(R.id.textview_descricao);
             btnRemoverBreja = (FloatingActionButton) itemView.findViewById(R.id.btnRemoverBreja);
-            //btnEditarBreja = (FloatingActionButton) itemView.findViewById(R.id.btnEditarBreja);
 
         }
     }

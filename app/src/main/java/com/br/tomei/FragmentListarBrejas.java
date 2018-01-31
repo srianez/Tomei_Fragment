@@ -1,6 +1,5 @@
 package com.br.tomei;
 
-import android.content.Context;
 import android.net.Uri;
 
 import android.os.Bundle;
@@ -9,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +61,7 @@ public class FragmentListarBrejas extends Fragment {
         setLista();
 
         etFiltroListaBreja = v.findViewById(R.id.etFiltroListaBreja);
+
         etFiltroListaBreja.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -69,8 +70,9 @@ public class FragmentListarBrejas extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //Toast.makeText(getContext(), "onTextChanged", Toast.LENGTH_SHORT).show();
-                getBrejas("es");
+                //if(count > 2) {
+                    getBrejas(etFiltroListaBreja.getText().toString().trim());
+                //}
             }
 
             @Override
@@ -83,6 +85,8 @@ public class FragmentListarBrejas extends Fragment {
     }
 
     private void getBrejas(String filtro) {
+
+        //Log.i("***** Valor do filtro: ",filtro);
 
         RetroFit retroFit = new RetroFit();
         BrejaAPI api = retroFit.getRetrofit().create(BrejaAPI.class);
@@ -104,8 +108,6 @@ public class FragmentListarBrejas extends Fragment {
 
         } else {
 
-            Toast.makeText(getContext(), "Entrou no else. . . ", Toast.LENGTH_SHORT).show();
-
             api.buscarItemNomeParc(filtro).enqueue(new Callback<List<Breja>>() {
                 @Override
                 public void onResponse(Call<List<Breja>> call, Response<List<Breja>> response) {
@@ -115,6 +117,7 @@ public class FragmentListarBrejas extends Fragment {
 
                 @Override
                 public void onFailure(Call<List<Breja>> call, Throwable t) {
+                    Log.v("XXXXXXXXX"," Já deu erro");
                     Toast.makeText(getContext(), getString(R.string.errorLoadingBeer), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -148,30 +151,6 @@ public class FragmentListarBrejas extends Fragment {
         });
 
         mRecyclerView.setAdapter(adapter);
-    }
-
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
     }
 
     public interface OnFragmentInteractionListener {
