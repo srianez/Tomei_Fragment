@@ -17,10 +17,10 @@
     <string name="titleMyBeer">Minhas Brejas</string>
     <string name="titleNewUser">Novo Usuário</string>
     <string name="Beer">Breja</string>
-    <string name="changeBeer">Alterando a breja</string>
-    <string name="altBrejaSucess">Breja alterada com sucesso</string>
-    <string name="savingBeer">Salvando a breja</string>
-    <string name="saveBeerSucess">Breja adicionada com sucesso</string>
+    <string name="changeBeer">Alterando a breja...</string>
+    <string name="altBrejaSucess">Breja alterada com sucesso!</string>
+    <string name="savingBeer">Salvando a breja...</string>
+    <string name="saveBeerSucess">Breja adicionada com sucesso!</string>
     <string name="errorBeerCreated">Erro ao criar breja!</string>
 
     //Loggin
@@ -33,8 +33,8 @@
     <string name="hintEntrar">Loggin</string>
     <string name="hintNovoUser">Novo Usuário</string>
     <string name="errorFindUser">Usuário não encontrado</string>
-    <string name="errorUserRequired">Informar o usuário</string>
-    <string name="errorPassRequired">Informar a senha</string>
+    <string name="errorUserRequired">Favor informar o usuário!</string>
+    <string name="errorPassRequired">Favor informar a senha!</string>
     <string name="savingUser">Salvando usuário...</string>
     <string name="userCreated">Usuário criado com sucesso!</string>
     <string name="errorUserCreated">Erro ao criar usuário!</string>
@@ -46,11 +46,11 @@
     <string name="hintNomeBreja">Nome</string>
     <string name="hintTipo">Tipo da breja</string>
     <string name="hintObs">Obs</string>
-    <string name="errorNameBeerRequired">Nome é obrigatório</string>
-    <string name="errorAltBeer">Erro ao alterar a breja</string>
+    <string name="errorNameBeerRequired">Nome da breja é obrigatório!</string>
+    <string name="errorAltBeer">Erro ao alterar a breja!</string>
     <string name="beerRemoved">Breja removida!</string>
-    <string name="errorRemoveBeer">Erro ao remover a breja</string>
-    <string name="errorLoadingBeer">Erro ao carregar as brejas</string>
+    <string name="errorRemoveBeer">Erro ao remover a breja!</string>
+    <string name="errorLoadingBeer">Erro ao carregar as brejas!</string>
 
 
     <string-array name="tipo_breja">
