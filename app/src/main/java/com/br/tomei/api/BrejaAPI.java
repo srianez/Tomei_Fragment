@@ -25,7 +25,7 @@ public interface BrejaAPI {
 
     //busca item pelo nome (conteudo)
     @GET("/breja/nomeParcial/{nome}")
-    Call<List<Breja>> buscarItemNomeParc(@Path("nome") String nome);
+    Call<List<Breja>> buscarItemNomeParc(@Path(value="nome") String nome);
 
     //busca item pelo id
     @GET("/breja/id/{id}")

@@ -68,11 +68,14 @@ public class FragmentListarBrejas extends Fragment {
 
             }
 
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //if(count > 2) {
+                if(count > 2) {
                     getBrejas(etFiltroListaBreja.getText().toString().trim());
-                //}
+                } else if (count ==0){
+                    getBrejas("");
+                }
             }
 
             @Override
@@ -86,13 +89,11 @@ public class FragmentListarBrejas extends Fragment {
 
     private void getBrejas(String filtro) {
 
-        //Log.i("***** Valor do filtro: ",filtro);
-
         RetroFit retroFit = new RetroFit();
         BrejaAPI api = retroFit.getRetrofit().create(BrejaAPI.class);
 
         if (filtro.isEmpty() || filtro=="") {
-
+            //busca todas
             api.findAll().enqueue(new Callback<List<Breja>>() {
                 @Override
                 public void onResponse(Call<List<Breja>> call, Response<List<Breja>> response) {
@@ -107,8 +108,8 @@ public class FragmentListarBrejas extends Fragment {
             });
 
         } else {
-
-            api.buscarItemNomeParc(filtro).enqueue(new Callback<List<Breja>>() {
+           //busca pelo nome parcial
+           api.buscarItemNomeParc(filtro).enqueue(new Callback<List<Breja>>() {
                 @Override
                 public void onResponse(Call<List<Breja>> call, Response<List<Breja>> response) {
                     brejasListas = response.body();
@@ -117,12 +118,10 @@ public class FragmentListarBrejas extends Fragment {
 
                 @Override
                 public void onFailure(Call<List<Breja>> call, Throwable t) {
-                    Log.v("XXXXXXXXX"," Já deu erro");
                     Toast.makeText(getContext(), getString(R.string.errorLoadingBeer), Toast.LENGTH_SHORT).show();
                 }
             });
         }
-
     }
 
 
@@ -130,7 +129,6 @@ public class FragmentListarBrejas extends Fragment {
         adapter = new RecyclerAdapter(getActivity(), brejasListas, new ClickRecyclerView_Interface() {
             @Override
             public void onClick(Object object) {
-                //Toast.makeText(getContext(), ((Breja) object).getNome(), Toast.LENGTH_SHORT).show();
 
                 RetroFit retroFit = new RetroFit();
                 BrejaAPI api = retroFit.getRetrofit().create(BrejaAPI.class);
